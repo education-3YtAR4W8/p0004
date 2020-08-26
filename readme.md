@@ -1,8 +1,9 @@
-1. ˆÈ‰º‚ÌURL‚ÅƒŠƒNƒGƒXƒg‚µ‚½‚Æ‚«‚Éƒ‚ƒbƒN‚Ìƒy[ƒW‚ð•\Ž¦‚µ‚Ä‚­‚¾‚³‚¢B
-localhost:8080/reserveroom/(”NŒŽ“ú)/(Ž{ÝID)/
+1. ä»¥ä¸‹ã®URLã§ãƒªã‚¯ã‚¨ã‚¹ãƒˆã—ãŸã¨ãã«ãƒ¢ãƒƒã‚¯ã®ãƒšãƒ¼ã‚¸ã‚’è¡¨ç¤ºã—ã¦ãã ã•ã„ã€‚
+
+localhost:8080/reserveroom/(å¹´æœˆæ—¥)/(æ–½è¨­ID)/
 
 ex: localhost:8080/reserveroom/20200820/1/
 
-2. —\–ñ‹@”\‚Æ—\–ñŽæ‚èÁ‚µ‹@”\‚àŽÀ‘•‚µ‚Ä‚­‚¾‚³‚¢B
+2. äºˆç´„æ©Ÿèƒ½ã¨äºˆç´„å–ã‚Šæ¶ˆã—æ©Ÿèƒ½ã‚‚å®Ÿè£…ã—ã¦ãã ã•ã„ã€‚
 
-3. ƒf[ƒ^ƒx[ƒX‚Ì’è‹`‚à‡‚í‚¹‚Äl‚¦‚Ä‚­‚¾‚³‚¢B
+3. ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã®å®šç¾©ã‚‚åˆã‚ã›ã¦è€ƒãˆã¦ãã ã•ã„ã€‚
