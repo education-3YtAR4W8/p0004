@@ -23,18 +23,21 @@
 <body>
 
 <div class="container">
-    <div class="alert alert-success" role="alert">
+    <div class="alert alert-success" role="alert" th:if="${page.insertSuccess}">
         予約しました。
     </div>
-    <div class="alert alert-danger" role="alert">
+    <div class="alert alert-danger" role="alert" th:if="${page.insertError}">
         予約できませんでした。
     </div>
+    <div class="alert alert-danger" role="alert" th:if="${page.deleteError}">
+        削除できませんでした。
+    </div>
 
-    <h2>2020年8月20日</h2>
+    <h2 th:text="${page.title}">2020年1月1日</h2>
     青色 - 自身の予約<br>
     灰色 - 他者の予約<br>
 
-    <form method="post" action="/reserveroom/reserve/">
+    <form method="post" action="/reserveroom/reserve/"th:object="${reserveForm}" >
         <div class="row border-bottom">
             <div class="col border-right">&nbsp;</div>
             <div class="col">00</div>
@@ -42,173 +45,12 @@
             <div class="col">30</div>
             <div class="col">45</div>
         </div>
-        <div class="row">
-            <div class="col border-right">0</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-        </div>
-        <div class="row">
-            <div class="col border-right">1</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-        </div>
-        <div class="row">
-            <div class="col border-right">2</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-        </div>
-        <div class="row border-bottom">
-            <div class="col border-right">3</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-        </div>
-        <div class="row">
-            <div class="col border-right">4</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-        </div>
-        <div class="row">
-            <div class="col border-right">5</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-        </div>
-        <div class="row">
-            <div class="col border-right">6</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-        </div>
-        <div class="row border-bottom">
-            <div class="col border-right">7</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-        </div>
-        <div class="row">
-            <div class="col border-right">8</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-        </div>
-        <div class="row">
-            <div class="col border-right">9</div>
-            <div class="col bg-secondary">&nbsp;</div>
-            <div class="col bg-secondary">&nbsp;</div>
-            <div class="col bg-secondary">&nbsp;</div>
-            <div class="col bg-secondary">&nbsp;</div>
-        </div>
-        <div class="row">
-            <div class="col border-right">10</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-        </div>
-        <div class="row border-bottom">
-            <div class="col border-right">11</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col bg-primary">&nbsp;</div>
-            <div class="col bg-primary">&nbsp;</div>
-        </div>
-        <div class="row">
-            <div class="col border-right">12</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-        </div>
-        <div class="row">
-            <div class="col border-right">13</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-        </div>
-        <div class="row">
-            <div class="col border-right">14</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-        </div>
-        <div class="row border-bottom">
-            <div class="col border-right">15</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-        </div>
-        <div class="row">
-            <div class="col border-right">16</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-        </div>
-        <div class="row">
-            <div class="col border-right">17</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-        </div>
-        <div class="row">
-            <div class="col border-right">18</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-        </div>
-        <div class="row border-bottom">
-            <div class="col border-right">19</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-        </div>
-        <div class="row">
-            <div class="col border-right">20</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-        </div>
-        <div class="row">
-            <div class="col border-right">21</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-        </div>
-        <div class="row">
-            <div class="col border-right">22</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-        </div>
-        <div class="row border-bottom">
-            <div class="col border-right">23</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
-            <div class="col">&nbsp;</div>
+        <div th:each="reserveSchedule, stat : ${page.reserveScheduleList}" class="row">
+            <div class="col border-right" th:text="${stat.index}">0</div>
+            <span th:each="reservation : ${reserveSchedule.reservationHourList}">
+                <div th:if="${reservation.scheduled}" class="col bg-secondary">&nbsp;</div>
+                <div th:if="${reservation.loginUserScheduled}" class="col bg-primary">&nbsp;</div>
+            </span>
         </div>
         
         <hr>
@@ -216,49 +58,41 @@
         <div class="row my-2">
             <div class="form-group col">
                 <label class="sr-only" for="cmbReserveHourBegin">予約開始時間(時)</label>
-                <select id="cmbReserveHourBegin" class="form-control">
-                    <option selected>選択...</option>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>22</option>
-                    <option>23</option>
-                    <option>24</option>
+                <select name="cmbReserveHourBegin" id="cmbReserveHourBegin" class="form-control" required>
+                    <option disabled selected value="">選択...</option>
+                    <option th:each="i : ${#numbers.sequence(0, 23)}" th:value="${i}" th:text="${i}">0</option>
                 </select>
             </div>
             <div class="form-group col">
                 <label class="sr-only" for="cmbReserveMinuteBegin">予約開始時間(分)</label>
-                <select id="cmbReserveMinuteBegin" class="form-control">
-                    <option selected>選択...</option>
-                    <option>00</option>
-                    <option>15</option>
-                    <option>30</option>
-                    <option>45</option>
+                <select name="cmbReserveMinuteBegin" id="cmbReserveMinuteBegin" class="form-control" required>
+                    <option disabled selected value="">選択...</option>
+                    <option value="00">00</option>
+                    <option value="15">15</option>
+                    <option value="30">30</option>
+                    <option value="45">45</option>
                 </select>
             </div>
             <div class="col-auto my-auto">から</div>
             <div class="form-group col">
                 <label class="sr-only" for="cmbReserveHourEnd">予約終了時間(時)</label>
-                <select id="cmbReserveHourEnd" class="form-control">
-                    <option selected>選択...</option>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>22</option>
-                    <option>23</option>
-                    <option>24</option>
+                <select name="cmbReserveHourEnd" id="cmbReserveHourEnd" class="form-control" required>
+                    <option disabled selected value="">選択...</option>
+                    <option th:each="i : ${#numbers.sequence(0, 24)}" th:value="${i}" th:text="${i}">0</option>
                 </select>
             </div>
             <div class="form-group col">
                 <label class="sr-only" for="cmbReserveMinuteEnd">予約終了時間(分)</label>
-                <select id="cmbReserveMinuteEnd" class="form-control">
-                    <option selected>選択...</option>
-                    <option>00</option>
-                    <option>15</option>
-                    <option>30</option>
-                    <option>45</option>
+                <select name="cmbReserveMinuteEnd" id="cmbReserveMinuteEnd" class="form-control" required>
+                    <option disabled selected value="">選択...</option>
+                    <option value="00">00</option>
+                    <option value="15">15</option>
+                    <option value="30">30</option>
+                    <option value="45">45</option>
                 </select>
             </div>
+            <input type="hidden" id="reservationDate" th:field="${page.reservationDate}"/>
+            <input type="hidden" id="roomId" th:field="${page.roomId}"/>
             <div class="col">
                 <button type="submit" class="btn btn-primary">予約する</button>
             </div>
@@ -268,13 +102,13 @@
     <hr>
     <h2>予約を取り消す</h2>
     <form method="post" action="/reserveroom/delete/">
-        <div class="row my-2">
-            <div class="col">11:30 - 12:00</div>
-            <div class="col"><button type="submit" class="btn btn-primary" data-id="">取り消す</button></div>
-            </div>
+        <input type="hidden" name="reservationDate" th:value="${page.reservationDate}"/>
+        <input type="hidden" name="roomId" th:value="${page.roomId}"/>
+        <div class="row my-2" th:each = "ownReservation : ${page.ownReservationList}">
+            <div class="col" th:text="${#temporals.format(ownReservation.start_time, 'HH:mm')} + ' - ' + ${#temporals.format(ownReservation.end_time, 'HH:mm')}">11:30 - 12:00</div>
+            <div class="col"><button type="submit" class="btn btn-primary" th:id="${ownReservation.start_time}" name="deleteStartTime" th:value="${ownReservation.start_time}">取り消す</button></div>
         </div>
     </form>
 </div>
-
 </body>
 </html>
