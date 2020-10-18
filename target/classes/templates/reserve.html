@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="with=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>
+        会議室予約ツール
+    </title>
+</head>
+<body>
+
+<div class="container">
+    <div th:if="${!reservePage.resultMsgSuccess.equals('')}" class="alert alert-success" role="alert" th:text="${reservePage.resultMsgSuccess}">
+        予約しました。
+    </div>
+    <div th:if="${!reservePage.resultMsgFailed.equals('')}" class="alert alert-danger" role="alert" th:text="${reservePage.resultMsgFailed}">
+        予約できませんでした。
+    </div>
+
+    <h2 th:text="${reservePage.reservationDate}">2020年8月20日</h2>
+    青色 - <label th:text="${reservePage.loginUserId}"></label>さんの予約<br>
+    灰色 - 他者の予約<br>
+
+    <form method="post" action="/reserveroom/reserve/">
+        <div class="row border-bottom">
+            <div class="col border-right">&nbsp;</div>
+            <div class="col">00</div>
+            <div class="col">15</div>
+            <div class="col">30</div>
+            <div class="col">45</div>
+        </div>
+        <div th:each="timeTableMap : ${reservePage.timeTableMap}" class="row border-bottom">
+            <div class="col border-right" th:text="${timeTableMap.Key}"></div>
+            <th:block th:each="reserveClass : ${timeTableMap.value.getReservationClassificationList()}">
+                <th:block th:switch="${reserveClass}">
+                    <div th:case="0" class="col">&nbsp;</div>
+                    <div th:case="1" class="col bg-primary">&nbsp;</div>
+                    <div th:case="2" class="col bg-secondary">&nbsp;</div>
+                </th:block>
+            </th:block>
+        </div>
+        
+        <hr>
+        <h2>予約する</h2>
+        <div class="row my-2">
+            <div class="form-group col">
+                <label class="sr-only" for="cmbReserveHourBegin">予約開始時間(時)</label>
+                <select id="cmbReserveHourBegin" class="form-control" th:name="beginHour">
+                    <option selected>選択...</option>
+                    <option th:each="i : ${#numbers.sequence(0,23)}" th:value="${i}" th:text="${i}"></option>
+                </select>
+            </div>
+            <div class="form-group col">
+                <label class="sr-only" for="cmbReserveMinuteBegin">予約開始時間(分)</label>
+                <select id="cmbReserveMinuteBegin" class="form-control" th:name="beginMinute">
+                    <option selected>選択...</option>
+                    <option>00</option>
+                    <option>15</option>
+                    <option>30</option>
+                    <option>45</option>
+                </select>
+            </div>
+            <div class="col-auto my-auto">から</div>
+            <div class="form-group col">
+                <label class="sr-only" for="cmbReserveHourEnd">予約終了時間(時)</label>
+                <select id="cmbReserveHourEnd" class="form-control" th:name="endHour">
+                    <option selected>選択...</option>
+                    <option th:each="i : ${#numbers.sequence(0,23)}" th:value="${i}" th:text="${i}"></option>
+                </select>
+            </div>
+            <div class="form-group col">
+                <label class="sr-only" for="cmbReserveMinuteEnd">予約終了時間(分)</label>
+                <select id="cmbReserveMinuteEnd" class="form-control" th:name="endMinute">
+                    <option selected>選択...</option>
+                    <option>00</option>
+                    <option>15</option>
+                    <option>30</option>
+                    <option>45</option>
+                </select>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary">予約する</button>
+            </div>
+        </div>
+    </form>
+    
+    <hr>
+    <h2>予約を取り消す</h2>
+    <th:block th:if="${reservePage.primaryReservationMap.size()} == 0">
+        <h4>本日の予約はありません。</h4>
+    </th:block>
+    <form method="post" action="/reserveroom/delete/">
+        <th:block th:each="primary, stat : ${reservePage.primaryReservationMap}">
+            <div class="row my-2">
+                <input type="radio" name="radio" th:name="reservationNo"
+                       value="0" th:value="${primary.key}"/>
+                <div class="col" th:text="${primary.value}"></div>
+                <th:block th:if="${stat.last}">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">取り消す</button>
+                    </div>
+                </th:block>
+            </div>
+        </th:block>
+    </form>
+</div>
+
+</body>
+</html>
