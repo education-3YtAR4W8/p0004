@@ -26,7 +26,7 @@
     <div class="alert alert-success" role="alert">
         予約しました。
     </div>
-    <div class="alert alert-danger" role="alert">
+    <div class="alert alert-danger" role="alert" th:if="${page.inputForm.hasError()}">
         予約できませんでした。
     </div>
 
